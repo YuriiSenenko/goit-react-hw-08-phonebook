@@ -1,0 +1,25 @@
+.userSection {
+  display: flex;
+  align-items: center;
+}
+
+.userEmail {
+  font-size: 20px;
+}
+
+.button {
+  margin-left: 30px;
+  cursor: pointer;
+  padding: 5px 10px;
+  border: 0;
+  border-radius: 15px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #000;
+  background-color: transparent;
+  transition: color 250ms ease-in-out;
+}
+
+.button:hover {
+  color: rgb(228, 47, 47);
+}

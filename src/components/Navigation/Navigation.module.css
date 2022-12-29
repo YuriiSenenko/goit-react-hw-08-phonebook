@@ -1,0 +1,19 @@
+.navList {
+  display: flex;
+  align-items: center;
+}
+
+.navLinks {
+  font-size: 20px;
+  font-weight: 600;
+  color: black;
+  transition: color 250ms ease-in-out;
+}
+
+.navLinks:not(:first-child) {
+  margin-left: 30px;
+}
+
+.navLinks:hover {
+  color: rgb(228, 47, 47);
+}

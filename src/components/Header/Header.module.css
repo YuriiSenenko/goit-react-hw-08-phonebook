@@ -1,0 +1,7 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  height: 50px;
+  /* outline: solid 1px tomato; */
+  border-bottom: 1px solid #000;
+}

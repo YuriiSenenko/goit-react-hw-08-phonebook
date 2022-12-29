@@ -14,15 +14,17 @@ const Filter = () => {
   };
 
   return (
-    <label className={css.label}>
-      Find contact by name:
-      <input
-        className={css.input}
-        type="text"
-        value={filter}
-        onChange={changeFilter}
-      ></input>
-    </label>
+    <div className={css.filter}>
+      <label>
+        Find contact by name:
+        <input
+          className={css.input}
+          type="text"
+          value={filter}
+          onChange={changeFilter}
+        ></input>
+      </label>
+    </div>
   );
 };
 export default Filter;
