@@ -95,15 +95,17 @@ function ContactForm() {
           onChange={handelChange}
         ></TextField>
         <TextField
+          inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
           id="standard-required"
           label="Number"
           size="small"
           variant="standard"
           value={number}
-          type="tel"
+          type="text"
           name="number"
-          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+          placeholder="only digits"
+          // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+          title="Phone number must be only digits"
           required
           onChange={handelChange}
         ></TextField>
