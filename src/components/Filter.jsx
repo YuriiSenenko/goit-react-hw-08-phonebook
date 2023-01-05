@@ -16,6 +16,7 @@ const Filter = () => {
 
   return (
     <TextField
+      autoComplete="off"
       sx={{ mt: '10px' }}
       size="small"
       fullWidth
