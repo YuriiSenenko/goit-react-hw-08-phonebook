@@ -1,9 +1,10 @@
 import React from 'react';
-import css from './Filter.module.css';
+
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { addFilter } from 'redux/filterSlice';
 import { selectFilter } from 'redux/selectors';
+import { TextField } from '@mui/material';
 
 const Filter = () => {
   const { filter } = useSelector(selectFilter);
@@ -14,17 +15,15 @@ const Filter = () => {
   };
 
   return (
-    <div className={css.filter}>
-      <label>
-        Find contact by name:
-        <input
-          className={css.input}
-          type="text"
-          value={filter}
-          onChange={changeFilter}
-        ></input>
-      </label>
-    </div>
+    <TextField
+      sx={{ mt: '10px' }}
+      size="small"
+      fullWidth
+      placeholder="Find contact by name"
+      type="search"
+      value={filter}
+      onChange={changeFilter}
+    ></TextField>
   );
 };
 export default Filter;

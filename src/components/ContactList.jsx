@@ -1,11 +1,15 @@
 import React from 'react';
-import css from './ContactList.module.css';
+
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchContacts } from 'redux/operations';
 import { deleteContact } from 'redux/operations';
 import { selectContacts, selectFilter } from 'redux/selectors';
+
+import { Grid, IconButton, Paper, Tooltip, Typography } from '@mui/material';
+import Box from '@mui/material/Box';
+import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
 
 const ContactList = () => {
   const contacts = useSelector(selectContacts);
@@ -32,19 +36,40 @@ const ContactList = () => {
 
   const renderContacts = contacts => {
     return contacts.map(({ name, id, number }) => (
-      <li className={css.contact} key={id}>
-        {name}: {number}
-        <button className={css.deleteBtn} onClick={() => onDeleteContact(id)}>
-          Delete
-        </button>
-      </li>
+      <Grid item xs={12} md={6} key={id}>
+        <Paper
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            pl: '5px',
+          }}
+          elevation={8}
+        >
+          <Typography sx={{ flexGrow: 1 }} variant="h6" component="span">
+            {name}: {number}
+          </Typography>
+
+          <Tooltip title="Delete" placement="bottom">
+            <IconButton
+              sx={{ alignItems: 'flex-end' }}
+              onClick={() => onDeleteContact(id)}
+            >
+              <DeleteForeverOutlinedIcon />
+            </IconButton>
+          </Tooltip>
+        </Paper>
+      </Grid>
     ));
   };
 
   const visibleContacts = getVisibleContact();
 
   return (
-    <ul className={css.contactsList}>{renderContacts(visibleContacts)}</ul>
+    <Box sx={{ mt: '10px' }}>
+      <Grid spacing={1} container>
+        {renderContacts(visibleContacts)}
+      </Grid>
+    </Box>
   );
 };
 export default ContactList;

@@ -1,15 +1,18 @@
-import Title from '../../components/Title/Title';
-import Filter from '../../components/Filter/Filter';
-import ContactList from '../../components/ContactList';
+import Filter from '../components/Filter';
+import ContactList from '../components/ContactList';
 
-import css from './Contacts.module.css';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addContact } from 'redux/operations';
 import { selectContacts, selectIsLoading, selectError } from 'redux/selectors';
 
-function Contacts() {
+import Fab from '@mui/material/Fab';
+
+import { TextField } from '@mui/material';
+import Box from '@mui/material/Box';
+
+function ContactForm() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -37,6 +40,8 @@ function Contacts() {
   };
 
   const handelChange = e => {
+    // console.log(e.currentTarget.name, e.currentTarget.value);
+
     switch (e.currentTarget.name) {
       case 'name':
         setName(e.currentTarget.value);
@@ -62,50 +67,68 @@ function Contacts() {
   };
 
   return (
-    <>
-      <Title>Phonebook</Title>
-      <form className={css.form} onSubmit={handelSubmit}>
-        <label className={css.lable} htmlFor="">
-          Name
-        </label>
-        <input
+    <Box sx={{ display: 'flex', mt: '20px' }}>
+      <Box
+        component="form"
+        sx={{
+          '& > :not(style)': {
+            m: 1,
+            width: '30vw',
+            display: 'flex',
+            flexDirection: 'column',
+          },
+        }}
+        autoComplete="off"
+        onSubmit={handelSubmit}
+      >
+        <TextField
+          id="standard-required"
+          label="Name"
+          size="small"
+          variant="standard"
           value={name}
-          className={css.input}
           type="text"
           name="name"
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
           onChange={handelChange}
-        />
-        <label className={css.lable} htmlFor="">
-          Number
-        </label>
-        <input
+        ></TextField>
+        <TextField
+          id="standard-required"
+          label="Number"
+          size="small"
+          variant="standard"
           value={number}
-          className={css.input}
-          type="text"
+          type="tel"
           name="number"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
           onChange={handelChange}
-        />
-        <button className={css.button} type="submit">
-          Add contact
-        </button>
-      </form>
+        ></TextField>
 
-      <Filter />
-
-      {isLoading && !error && <b>Request in progress...</b>}
-      <ContactList />
-    </>
+        <Fab
+          color="primary"
+          variant="extended"
+          size="small"
+          type="submit"
+          aria-label="add"
+        >
+          Add Contact
+        </Fab>
+      </Box>
+      <Box sx={{ flexGrow: 1, ml: '20px' }}>
+        <Filter />
+        {isLoading && !error && <b>Request in progress...</b>}
+        <ContactList />
+      </Box>
+    </Box>
   );
 }
 
-export default Contacts;
+export default ContactForm;
 
-Contacts.propTypes = {
+ContactForm.propTypes = {
   onSubmit: PropTypes.func,
 };
