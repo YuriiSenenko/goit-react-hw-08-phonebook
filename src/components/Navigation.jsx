@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { selectIsLoggedIn } from 'redux/auth/auth-selectors';
 import { Box, Button } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 const Navigation = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -8,14 +9,21 @@ const Navigation = () => {
   return (
     <Box sx={{ display: 'flex', flexGrow: 1 }}>
       <Box sx={{ mr: '10px' }}>
-        <Button size="large" color="inherit" href="/">
-          Home
+        <Button size="large" color="inherit">
+          <Link style={{ textDecoration: 'none', color: 'white' }} to="/">
+            Home
+          </Link>
         </Button>
       </Box>
 
       {isLoggedIn && (
-        <Button size="large" color="inherit" href="/contacts">
-          Contacts
+        <Button size="large" color="inherit">
+          <Link
+            style={{ textDecoration: 'none', color: 'white' }}
+            to="/contacts"
+          >
+            Contacts
+          </Link>
         </Button>
       )}
     </Box>
