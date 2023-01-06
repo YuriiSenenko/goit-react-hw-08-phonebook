@@ -3,8 +3,8 @@ import { Typography } from '@mui/material';
 const Home = () => {
   return (
     <Typography
+      variant="h2"
       sx={{ mt: '40vh', textAlign: 'center', fontWeight: 'bold' }}
-      variant="h1"
     >
       This is your Phonebook
     </Typography>

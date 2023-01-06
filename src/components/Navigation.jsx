@@ -8,7 +8,7 @@ const Navigation = () => {
 
   return (
     <Box sx={{ display: 'flex', flexGrow: 1 }}>
-      <Box sx={{ mr: '10px' }}>
+      <Box>
         <Button size="large" color="inherit">
           <Link style={{ textDecoration: 'none', color: 'white' }} to="/">
             Home
